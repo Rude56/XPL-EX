@@ -51,21 +51,17 @@ jobs:
           "${SDKM}" --install "platforms;android-36" "build-tools;35.0.0" >/dev/null
           yes | "${SDKM}" --licenses >/dev/null 2>&1 || true
 
-      - name: Generate throwaway signing keystore
+      - name: Restore the fixed signing keystore
         run: |
           set -euo pipefail
-          keytool -genkeypair \
-            -keystore "${GITHUB_WORKSPACE}/KEYSTORE.JKS" \
-            -storetype JKS \
-            -alias trial \
-            -keyalg RSA -keysize 2048 -validity 10000 \
-            -storepass android -keypass android \
-            -dname "CN=XPL-EX zh-CN trial, OU=Trial, O=Trial, L=Trial, ST=Trial, C=CN"
+          # 用仓库内的固定 keystore，保证每次构建签名一致。
+          # 这样新 APK 可以直接覆盖安装旧版，不必卸载、不丢配置。
+          base64 -d app/keystore/zhcn-release.jks.b64 > "${GITHUB_WORKSPACE}/KEYSTORE.JKS"
           test -f "${GITHUB_WORKSPACE}/KEYSTORE.JKS"
           {
-            echo "KEYSTORE_PASSWORD=android"
-            echo "KEY_ALIAS=trial"
-            echo "KEY_PASSWORD=android"
+            echo "KEYSTORE_PASSWORD=xplzh2026"
+            echo "KEY_ALIAS=xplzh"
+            echo "KEY_PASSWORD=xplzh2026"
           } >> "$GITHUB_ENV"
 
       - name: Run unit tests
