@@ -13,7 +13,7 @@ An advanced privacy and coherent device-profile spoofing module for Android and 
 [![Android](https://img.shields.io/badge/Android-8.1%2B-3DDC84?logo=android&logoColor=white&style=flat-square)](#requirements)
 [![LSPosed API](https://img.shields.io/badge/libxposed-API%20101-167C80?style=flat-square)](https://github.com/libxposed/api)
 
-[Русская версия](README.md) · **English version**
+[Русская версия](README.md) · **English version** · [简体中文](README_ZH.md)
 
 [Download latest release](https://github.com/Mobilelegends74/XPL-EX/releases/latest) · [Report an issue](https://github.com/Mobilelegends74/XPL-EX/issues) · [Release history](https://github.com/Mobilelegends74/XPL-EX/releases)
 
@@ -38,7 +38,7 @@ XPL-EX-NEXT contains no advertising, analytics, or trackers. Hooks work without 
 - Application-list, timestamp, file, shell, property, Binder, and ContentResolver filtering.
 - Automatic assignment of required hooks when related settings are saved.
 - Requests to add selected applications to LSPosed scope and removal after the last hook is disabled.
-- Configuration import/export, Russian localization, and a built-in release update check.
+- Configuration import/export, English, Russian and Simplified Chinese interface languages, and a built-in release update check.
 - Modern Xposed API 101 with the compatibility bridge protocol kept at `1.5.5`.
 
 ## Requirements
@@ -58,6 +58,12 @@ The project targets current Android versions. Individual hook compatibility depe
 5. Restart the target application. Rebooting the device is recommended after updating the module itself.
 
 Since 1.6.7, assigning hooks requests addition of the target app to LSPosed scope. Approve the request if prompted; keep System Framework enabled. If requests are blocked, long-press XPL-EX in the LSPosed module list and select **Reset scope request setting**. Other Android profiles must be configured separately.
+
+### Interface language
+
+The interface is available in English, Russian and Simplified Chinese. Open **Settings → Language** and pick one, or leave it on **System language** to follow the device locale. The choice changes only the app's own interface; it does not modify any Android system setting, and it does not affect which values are reported to hooked applications.
+
+Help texts are translated separately from the interface. If a Chinese help text is not available for a particular hook group, the English text is shown instead.
 
 ### Migration to the permanent signing certificate
 
